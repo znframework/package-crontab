@@ -14,6 +14,7 @@ use ZN\Config;
 use ZN\Singleton;
 use ZN\Filesystem;
 use ZN\DataTypes\Arrays;
+use ZN\Prompt\PromptDefaultConfiguration;
 use ZN\Crontab\Exception\InvalidTimeFormatException;
 
 class Job implements JobInterface, CrontabIntervalInterface
@@ -96,7 +97,7 @@ class Job implements JobInterface, CrontabIntervalInterface
      */
     public function __construct()
     {
-        $this->getConfig = Config::default(new CrontabDefaultConfiguration)::get('Services', 'processor');
+        $this->getConfig = Config::default(new PromptDefaultConfiguration)::get('Services', 'processor');
         $this->zeroneed  = $this->_zeroneed();
         $this->processor = Singleton::class('ZN\Prompt\Processor');
 
