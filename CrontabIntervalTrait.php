@@ -1,4 +1,4 @@
-<?php namespace ZN\Prompt;
+<?php namespace ZN\Crontab;
 /**
  * ZN PHP Web Framework
  * 

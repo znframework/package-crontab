@@ -329,7 +329,7 @@ class Job implements JobInterface, CrontabIntervalInterface
     public function controller(String $file)
     {
         new ControllerCommand($file, $command);
-
+        
         $path = $this->_convertFileName($file);
         $code = Base::prefix(Base::suffix($command, ';\''), ' -r \'' . $this->zeroneed);
 
@@ -412,7 +412,7 @@ class Job implements JobInterface, CrontabIntervalInterface
      */
     protected function _zeroneed()
     {
-        return 'define("CONSOLE_ENABLED", true); require_once __DIR__ . "/zeroneed.php"; ';
+        return 'define("CONSOLE_ENABLED", true); require_once "' . REAL_BASE_DIR . 'zeroneed.php"; ';
     }
 
     /**
