@@ -16,6 +16,14 @@ class Crontab extends UnitTest
     const unit =
     [
         'class'   => 'Crontab',
-        'methods' => []
+        'methods' => 
+        [
+            'perminute'  => [1],
+            'controller' => ['example/controller'],
+            'command'    => ['example:command'],
+            'wget'       => ['http://localhost/example/controller'],
+            'list'       => [],
+            'remove'     => [NULL]
+        ]
     ];
 }
