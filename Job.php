@@ -403,7 +403,7 @@ class Job implements JobInterface, CrontabIntervalInterface
             $content = $content . $this->_command() . $cmd . EOL;
             file_put_contents($execFile, $content);
         }
-
+        
         return $this->processor->exec('crontab ' . $execFile);
     }
 
@@ -412,7 +412,7 @@ class Job implements JobInterface, CrontabIntervalInterface
      */
     protected function _zeroneed()
     {
-        return 'define("CONSOLE_ENABLED", true); require_once "' . REAL_BASE_DIR . 'zeroneed.php"; ';
+        return 'define("CONSOLE_ENABLED", true); require "zeroneed.php"; ';
     }
 
     /**
@@ -420,7 +420,7 @@ class Job implements JobInterface, CrontabIntervalInterface
      */
     protected function _project($value)
     {
-        $this->zeroneed = 'define("CONSOLE_PROJECT_NAME", "'.$this->user.'"); ' . $value;
+        $this->zeroneed = 'chdir("'.REAL_BASE_DIR.'"); define("CONSOLE_PROJECT_NAME", "'.$this->user.'"); ' . $value;
     }
 
     /**

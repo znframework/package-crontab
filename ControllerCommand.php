@@ -28,7 +28,7 @@ class ControllerCommand
         $parameters = $datas['parameters'];
         $class      = $namespace . $controller;
         $file       = str_replace('\\', '\\\\', $datas['file']);
-        $command    = 'ZN\Base::import("'.$file.'"); ZN\Singleton::class("'.$class.'")->'.$function.
+        $command    = '(new \\'.$class.')->'.$function.
         '('. 
             implode(',', array_map(function($data)
             { 
