@@ -90,6 +90,15 @@ interface JobInterface
     public function command(string $file);
 
     /**
+     * Script [6.8.0]
+     *
+     * @param string $cmd
+     * 
+     * @return int
+     */
+    public function script(String $cmd);
+
+    /**
      * Cron wget
      * 
      * @param string $url
