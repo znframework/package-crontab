@@ -66,6 +66,13 @@ interface JobInterface
     public function run(string $cmd = NULL);
 
     /**
+     * Get string query
+     * 
+     * @return string
+     */
+    public function stringQuery();
+
+    /**
      * Debug status
      * 
      * @param bool $status = true
