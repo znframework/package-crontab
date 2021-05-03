@@ -96,7 +96,7 @@ interface JobInterface
      * 
      * @return int
      */
-    public function script(String $cmd);
+    public function script(string $cmd);
 
     /**
      * Cron wget
