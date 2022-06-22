@@ -125,7 +125,7 @@ class Job implements JobInterface, CrontabIntervalInterface
         }
         else
         {
-            $this->crontabCommands = FILES_DIR . $this->fileName;
+            $this->crontabCommands = FILES_DIR . $this->fileName; // @codeCoverageIgnore
         }
 
         $this->createCrontabDirectoryIfNotExists();
@@ -405,7 +405,7 @@ class Job implements JobInterface, CrontabIntervalInterface
     {
         if( ! is_dir($crontabDirectory = pathinfo($this->crontabCommands, PATHINFO_DIRNAME)) )
         {
-            Filesystem::createFolder($crontabDirectory);
+            Filesystem::createFolder($crontabDirectory); // @codeCoverageIgnore
         }
     }
 
@@ -457,7 +457,7 @@ class Job implements JobInterface, CrontabIntervalInterface
 
             file_put_contents($this->crontabCommands, $content);
         }
-    }   
+    }  
 
     /**
      * Protected remove job from exec file
@@ -486,7 +486,7 @@ class Job implements JobInterface, CrontabIntervalInterface
             }
         }
 
-        return false;
+        return false; // @codeCoverageIgnore
     }
 
     /**
@@ -499,8 +499,8 @@ class Job implements JobInterface, CrontabIntervalInterface
         foreach( $this->listArray() as $key => $job )
         {
             if( ! stristr($job, $cmd) )
-            {
-                $jobs[$key] = $job;
+            { 
+                $jobs[$key] = $job; // @codeCoverageIgnore
             }
         }
 
@@ -573,9 +573,9 @@ class Job implements JobInterface, CrontabIntervalInterface
         $command        = $this->command;
         $debug          = $this->debug;
 
-        $match = '(\*|[0-9]{1,2}|\*\/[0-9]{1,2}|[0-9]{1,2}\s*\-\s*[0-9]{1,2}|(([0-9]{1,2})*\s*\,\s*[0-9]{1,2})+)\s+';
+        $pattern = str_repeat('(\*|[0-9]{1,2}|\*\/[0-9]{1,2}|[0-9]{1,2}\s*\-\s*[0-9]{1,2}|(([0-9]{1,2})*\s*\,\s*[0-9]{1,2})+)\s+', 5);
 
-        if( ! preg_match('/^'.$match.$match.$match.$match.$match.'$/', $datetimeFormat) )
+        if( ! preg_match('/^' . $pattern . '$/', $datetimeFormat) )
         {
             throw new InvalidTimeFormatException('Services', 'crontab:timeFormatError');
         }
